@@ -1,0 +1,140 @@
+game_id,season,fase,perna,id_par,date,home_club_id,home_club_name,away_club_id,away_club_name,home_club_goals,away_club_goals,stadium,publico,contexto,agg_antes_mandante,sofreu_primeiro,min_primeiro_gol,vermelhos_mandante,resultado,classificou
+3135800,2018,R16,1,,2019-02-12,12,Associazione Sportiva Roma,720,FC Porto,2,1,Olimpico di Roma,51727,COM_TORCIDA,0,0,70,0,V,
+3135801,2018,R16,1,,2019-02-12,985,Manchester United,583,Paris Saint-Germain,0,2,Old Trafford,74054,COM_TORCIDA,0,1,53,0,D,
+3135802,2018,R16,1,,2019-02-13,610,Ajax Amsterdam,418,Real Madrid,1,2,Johan Cruijff ArenA,52286,COM_TORCIDA,0,1,60,0,D,
+3135803,2018,R16,1,,2019-02-13,148,Tottenham Hotspur,16,Borussia Dortmund,3,0,Wembley Stadium,71214,COM_TORCIDA,0,0,47,0,V,
+3135804,2018,R16,1,,2019-02-19,31,Liverpool FC,27,Bayern Munich,0,0,Anfield,52250,COM_TORCIDA,0,0,-1,0,E,
+3135805,2018,R16,1,,2019-02-19,1041,Olympique Lyon,131,FC Barcelona,0,0,Groupama Stadium,57889,COM_TORCIDA,0,0,-1,0,E,
+3135799,2018,R16,1,,2019-02-20,13,Atlético de Madrid,506,Juventus FC,2,0,Civitas Metropolitano,67193,COM_TORCIDA,0,0,78,0,V,
+3135806,2018,R16,1,,2019-02-20,33,FC Schalke 04,281,Manchester City,2,3,Veltins-Arena,54417,COM_TORCIDA,0,1,18,0,D,
+3135809,2018,R16,2,3135803,2019-03-05,16,Borussia Dortmund,148,Tottenham Hotspur,0,1,SIGNAL IDUNA PARK,66099,COM_TORCIDA,-3,1,48,0,D,0
+3135812,2018,R16,2,3135802,2019-03-05,418,Real Madrid,610,Ajax Amsterdam,1,4,Santiago Bernabéu,77013,COM_TORCIDA,1,1,7,0,D,0
+3135808,2018,R16,2,3135801,2019-03-06,583,Paris Saint-Germain,985,Manchester United,1,3,Parc des Princes,47441,COM_TORCIDA,2,1,2,0,D,0
+3135811,2018,R16,2,3135800,2019-03-06,720,FC Porto,12,Associazione Sportiva Roma,3,1,Estádio do Dragão,49209,COM_TORCIDA,-1,0,26,0,V,1
+3135807,2018,R16,2,3135806,2019-03-12,281,Manchester City,33,FC Schalke 04,7,0,Etihad Stadium,51518,COM_TORCIDA,1,0,35,0,V,1
+3135814,2018,R16,2,3135799,2019-03-12,506,Juventus FC,13,Atlético de Madrid,3,0,Allianz Stadium,40884,COM_TORCIDA,-2,0,27,0,V,1
+3135810,2018,R16,2,3135805,2019-03-13,131,FC Barcelona,1041,Olympique Lyon,5,1,Spotify Camp Nou,92346,COM_TORCIDA,0,0,18,0,V,1
+3135813,2018,R16,2,3135804,2019-03-13,27,Bayern Munich,31,Liverpool FC,1,3,Allianz Arena,75000,COM_TORCIDA,0,1,26,0,D,0
+3167763,2018,QF,1,,2019-04-09,31,Liverpool FC,720,FC Porto,2,0,Anfield,52465,COM_TORCIDA,0,0,5,0,V,
+3167765,2018,QF,1,,2019-04-09,148,Tottenham Hotspur,281,Manchester City,1,0,Tottenham Hotspur Stadium,60044,COM_TORCIDA,0,0,78,0,V,
+3167761,2018,QF,1,,2019-04-10,610,Ajax Amsterdam,506,Juventus FC,1,1,Johan Cruijff ArenA,50390,COM_TORCIDA,0,1,45,0,E,
+3167767,2018,QF,1,,2019-04-10,985,Manchester United,131,FC Barcelona,0,1,Old Trafford,74093,COM_TORCIDA,0,1,12,0,D,
+3167762,2018,QF,2,3167761,2019-04-16,506,Juventus FC,610,Ajax Amsterdam,1,2,Allianz Stadium,41445,COM_TORCIDA,0,0,28,0,D,0
+3167768,2018,QF,2,3167767,2019-04-16,131,FC Barcelona,985,Manchester United,3,0,Spotify Camp Nou,96708,COM_TORCIDA,1,0,16,0,V,1
+3167764,2018,QF,2,3167763,2019-04-17,720,FC Porto,31,Liverpool FC,1,4,Estádio do Dragão,49117,COM_TORCIDA,-2,1,26,0,D,0
+3167766,2018,QF,2,3167765,2019-04-17,281,Manchester City,148,Tottenham Hotspur,4,3,Etihad Stadium,53348,COM_TORCIDA,-1,0,4,0,V,0
+3177023,2018,SF,1,,2019-04-30,148,Tottenham Hotspur,610,Ajax Amsterdam,0,1,Tottenham Hotspur Stadium,60243,COM_TORCIDA,0,1,15,0,D,
+3177022,2018,SF,1,,2019-05-01,131,FC Barcelona,31,Liverpool FC,3,0,Spotify Camp Nou,98299,COM_TORCIDA,0,0,26,0,V,
+3177025,2018,SF,2,3177022,2019-05-07,31,Liverpool FC,131,FC Barcelona,4,0,Anfield,52212,COM_TORCIDA,-3,0,7,0,V,1
+3177024,2018,SF,2,3177023,2019-05-08,610,Ajax Amsterdam,148,Tottenham Hotspur,2,3,Johan Cruijff ArenA,52641,COM_TORCIDA,1,0,5,0,D,0
+3183105,2018,F,0,,2019-06-01,148,Tottenham Hotspur,31,Liverpool FC,0,2,Civitas Metropolitano,63272,NEUTRO,0,1,2,0,D,0
+3291927,2019,R16,1,,2020-02-18,16,Borussia Dortmund,583,Paris Saint-Germain,2,1,SIGNAL IDUNA PARK,66099,COM_TORCIDA,0,0,69,0,V,
+3291930,2019,R16,1,,2020-02-18,13,Atlético de Madrid,31,Liverpool FC,1,0,Riyadh Air Metropolitano,67443,COM_TORCIDA,0,0,4,0,V,
+3291929,2019,R16,1,,2020-02-19,800,Atalanta BC,1049,Valencia CF,4,1,Giuseppe Meazza,44236,COM_TORCIDA,0,0,16,0,V,
+3291933,2019,R16,1,,2020-02-19,148,Tottenham Hotspur,23826,RB Leipzig,0,1,Tottenham Hotspur Stadium,60095,COM_TORCIDA,0,1,58,0,D,
+3291931,2019,R16,1,,2020-02-25,631,Chelsea FC,27,Bayern Munich,0,3,Stamford Bridge,36761,COM_TORCIDA,0,1,51,1,D,
+3291934,2019,R16,1,,2020-02-25,6195,SSC Napoli,131,FC Barcelona,1,1,Diego Armando Maradona,44388,COM_TORCIDA,0,0,30,0,E,
+3291928,2019,R16,1,,2020-02-26,418,Real Madrid,281,Manchester City,1,2,Santiago Bernabéu,75615,COM_TORCIDA,0,0,60,1,D,
+3291932,2019,R16,1,,2020-02-26,1041,Olympique Lyon,506,Juventus FC,1,0,Groupama Stadium,57335,COM_TORCIDA,0,0,31,0,V,
+3291937,2019,R16,2,3291929,2020-03-10,1049,Valencia CF,800,Atalanta BC,3,4,Mestalla,0,SEM_TORCIDA,-3,1,3,0,D,0
+3291941,2019,R16,2,3291933,2020-03-10,23826,RB Leipzig,148,Tottenham Hotspur,3,0,Red Bull Arena,42146,COM_TORCIDA,1,0,10,0,V,1
+3291935,2019,R16,2,3291927,2020-03-11,583,Paris Saint-Germain,16,Borussia Dortmund,2,0,Parc des Princes,0,SEM_TORCIDA,-1,0,28,0,V,1
+3291938,2019,R16,2,3291930,2020-03-11,31,Liverpool FC,13,Atlético de Madrid,2,3,Anfield,52267,COM_TORCIDA,-1,0,43,0,D,0
+3291936,2019,R16,2,3291928,2020-08-07,281,Manchester City,418,Real Madrid,2,1,Etihad Stadium,0,SEM_TORCIDA,1,0,9,0,V,1
+3291940,2019,R16,2,3291932,2020-08-07,506,Juventus FC,1041,Olympique Lyon,2,1,Allianz Stadium,0,SEM_TORCIDA,-1,1,12,0,V,0
+3291939,2019,R16,2,3291931,2020-08-08,27,Bayern Munich,631,Chelsea FC,4,1,Allianz Arena,0,SEM_TORCIDA,3,0,10,0,V,1
+3291942,2019,R16,2,3291934,2020-08-08,131,FC Barcelona,6195,SSC Napoli,3,1,Spotify Camp Nou,0,SEM_TORCIDA,0,0,10,0,V,1
+3395237,2019,QF,0,,2020-08-12,800,Atalanta BC,583,Paris Saint-Germain,1,2,Estádio da Luz,0,NEUTRO,0,0,26,0,D,0
+3395236,2019,QF,0,,2020-08-13,23826,RB Leipzig,13,Atlético de Madrid,2,1,Estádio José Alvalade,0,NEUTRO,0,0,50,0,V,1
+3414688,2019,QF,0,,2020-08-14,131,FC Barcelona,27,Bayern Munich,2,8,Estádio da Luz,0,NEUTRO,0,1,4,0,D,0
+3414689,2019,QF,0,,2020-08-15,281,Manchester City,1041,Olympique Lyon,1,3,Estádio José Alvalade,0,NEUTRO,0,1,24,0,D,0
+3418065,2019,SF,0,,2020-08-18,23826,RB Leipzig,583,Paris Saint-Germain,0,3,Estádio da Luz,0,NEUTRO,0,1,13,0,D,0
+3418670,2019,SF,0,,2020-08-19,1041,Olympique Lyon,27,Bayern Munich,0,3,Estádio José Alvalade,0,NEUTRO,0,1,18,0,D,0
+3421017,2019,F,0,,2020-08-23,583,Paris Saint-Germain,27,Bayern Munich,0,1,Estádio da Luz,0,NEUTRO,0,1,59,0,D,0
+3496451,2020,R16,1,,2021-02-16,23826,RB Leipzig,31,Liverpool FC,0,2,Puskás Aréna,0,NEUTRO,0,1,53,0,D,
+3496453,2020,R16,1,,2021-02-16,131,FC Barcelona,583,Paris Saint-Germain,1,4,Spotify Camp Nou,0,SEM_TORCIDA,0,0,27,0,D,
+3496452,2020,R16,1,,2021-02-17,720,FC Porto,506,Juventus FC,2,1,Estádio do Dragão,0,SEM_TORCIDA,0,0,2,0,V,
+3496454,2020,R16,1,,2021-02-17,368,Sevilla FC,16,Borussia Dortmund,2,3,Ramón Sánchez-Pizjuán,0,SEM_TORCIDA,0,0,7,0,D,
+3496449,2020,R16,1,,2021-02-23,398,Società Sportiva Lazio S.p.A.,27,Bayern Munich,1,4,Olimpico di Roma,0,SEM_TORCIDA,0,1,9,0,D,
+3496450,2020,R16,1,,2021-02-23,13,Atlético de Madrid,631,Chelsea FC,0,1,Arena Națională,0,NEUTRO,0,1,68,0,D,
+3496448,2020,R16,1,,2021-02-24,18,Borussia Mönchengladbach,281,Manchester City,0,2,Puskás Aréna,0,NEUTRO,0,1,29,0,D,
+3496455,2020,R16,1,,2021-02-24,800,Atalanta BC,418,Real Madrid,0,1,Gewiss Stadium,0,SEM_TORCIDA,0,1,86,1,D,
+3496460,2020,R16,2,3496452,2021-03-09,506,Juventus FC,720,FC Porto,3,2,Allianz Stadium,0,SEM_TORCIDA,-1,1,19,0,V,0
+3496462,2020,R16,2,3496454,2021-03-09,16,Borussia Dortmund,368,Sevilla FC,2,2,SIGNAL IDUNA PARK,0,SEM_TORCIDA,1,0,35,0,E,1
+3496459,2020,R16,2,3496451,2021-03-10,31,Liverpool FC,23826,RB Leipzig,2,0,Puskás Aréna,0,NEUTRO,2,0,70,0,V,1
+3496461,2020,R16,2,3496453,2021-03-10,583,Paris Saint-Germain,131,FC Barcelona,1,1,Parc des Princes,0,SEM_TORCIDA,3,0,30,0,E,1
+3496456,2020,R16,2,3496448,2021-03-16,281,Manchester City,18,Borussia Mönchengladbach,2,0,Puskás Aréna,0,NEUTRO,2,0,12,0,V,1
+3496463,2020,R16,2,3496455,2021-03-16,418,Real Madrid,800,Atalanta BC,3,1,Estadio Alfredo Di Stéfano,0,SEM_TORCIDA,1,0,34,0,V,1
+3496457,2020,R16,2,3496449,2021-03-17,27,Bayern Munich,398,Società Sportiva Lazio S.p.A.,2,1,Allianz Arena,0,SEM_TORCIDA,3,0,33,0,V,1
+3496458,2020,R16,2,3496450,2021-03-17,631,Chelsea FC,13,Atlético de Madrid,2,0,Stamford Bridge,0,SEM_TORCIDA,1,0,34,0,V,1
+3537799,2020,QF,1,,2021-04-06,281,Manchester City,16,Borussia Dortmund,2,1,Etihad Stadium,0,SEM_TORCIDA,0,0,19,0,V,
+3537802,2020,QF,1,,2021-04-06,418,Real Madrid,31,Liverpool FC,3,1,Estadio Alfredo Di Stéfano,0,SEM_TORCIDA,0,0,27,0,V,
+3537800,2020,QF,1,,2021-04-07,720,FC Porto,631,Chelsea FC,0,2,Ramón Sánchez-Pizjuán,0,SEM_TORCIDA,0,1,32,0,D,
+3537801,2020,QF,1,,2021-04-07,27,Bayern Munich,583,Paris Saint-Germain,2,3,Allianz Arena,0,SEM_TORCIDA,0,1,3,0,D,
+3537804,2020,QF,2,3537800,2021-04-13,631,Chelsea FC,720,FC Porto,0,1,Ramón Sánchez-Pizjuán,0,SEM_TORCIDA,2,1,90,0,D,1
+3537805,2020,QF,2,3537801,2021-04-13,583,Paris Saint-Germain,27,Bayern Munich,0,1,Parc des Princes,0,SEM_TORCIDA,1,1,40,0,D,1
+3537803,2020,QF,2,3537799,2021-04-14,16,Borussia Dortmund,281,Manchester City,1,2,SIGNAL IDUNA PARK,0,SEM_TORCIDA,-1,0,15,0,D,0
+3537806,2020,QF,2,3537802,2021-04-14,31,Liverpool FC,418,Real Madrid,0,0,Anfield,0,SEM_TORCIDA,-2,0,-1,0,E,0
+3552987,2020,SF,1,,2021-04-27,418,Real Madrid,631,Chelsea FC,1,1,Estadio Alfredo Di Stéfano,0,SEM_TORCIDA,0,1,14,0,E,
+3552988,2020,SF,1,,2021-04-28,583,Paris Saint-Germain,281,Manchester City,1,2,Parc des Princes,0,SEM_TORCIDA,0,0,15,1,D,
+3552989,2020,SF,2,3552988,2021-05-04,281,Manchester City,583,Paris Saint-Germain,2,0,Etihad Stadium,0,SEM_TORCIDA,1,0,11,0,V,1
+3552990,2020,SF,2,3552987,2021-05-05,631,Chelsea FC,418,Real Madrid,2,0,Stamford Bridge,0,SEM_TORCIDA,0,0,28,0,V,1
+3562547,2020,F,0,,2021-05-29,281,Manchester City,631,Chelsea FC,0,1,Estádio do Dragão,14110,NEUTRO,0,1,42,0,D,0
+3714215,2021,R16,1,,2022-02-15,336,Sporting CP,281,Manchester City,0,5,Estádio José Alvalade,48129,COM_TORCIDA,0,1,7,0,D,
+3714221,2021,R16,1,,2022-02-15,583,Paris Saint-Germain,418,Real Madrid,1,0,Parc des Princes,47443,COM_TORCIDA,0,0,90,0,V,
+3714214,2021,R16,1,,2022-02-16,409,Fußballclub Red Bull Salzburg,27,Bayern Munich,1,1,Red Bull Arena Salzburg,30000,COM_TORCIDA,0,0,21,0,E,
+3714220,2021,R16,1,,2022-02-16,46,Inter Milan,31,Liverpool FC,0,2,Giuseppe Meazza,37918,COM_TORCIDA,0,1,75,0,D,
+3714217,2021,R16,1,,2022-02-22,631,Chelsea FC,1082,LOSC Lille,2,0,Stamford Bridge,38832,COM_TORCIDA,0,0,8,0,V,
+3714219,2021,R16,1,,2022-02-22,1050,Villarreal CF,506,Juventus FC,1,1,La Cerámica,17686,COM_TORCIDA,0,1,1,0,E,
+3714216,2021,R16,1,,2022-02-23,294,SL Benfica,610,Ajax Amsterdam,2,2,Estádio da Luz,65647,COM_TORCIDA,0,1,18,0,E,
+3714218,2021,R16,1,,2022-02-23,13,Atlético de Madrid,985,Manchester United,1,1,Riyadh Air Metropolitano,63273,COM_TORCIDA,0,0,7,0,E,
+3714222,2021,R16,2,3714214,2022-03-08,27,Bayern Munich,409,Fußballclub Red Bull Salzburg,7,1,Allianz Arena,25000,COM_TORCIDA,0,0,12,0,V,1
+3714228,2021,R16,2,3714220,2022-03-08,31,Liverpool FC,46,Inter Milan,0,1,Anfield,51747,COM_TORCIDA,2,1,62,0,D,1
+3714223,2021,R16,2,3714215,2022-03-09,281,Manchester City,336,Sporting CP,0,0,Etihad Stadium,51213,COM_TORCIDA,5,0,-1,0,E,1
+3714229,2021,R16,2,3714221,2022-03-09,418,Real Madrid,583,Paris Saint-Germain,3,1,Santiago Bernabéu,59895,COM_TORCIDA,-1,1,39,0,V,1
+3714224,2021,R16,2,3714216,2022-03-15,610,Ajax Amsterdam,294,SL Benfica,0,1,Johan Cruijff ArenA,54066,COM_TORCIDA,0,1,77,0,D,0
+3714226,2021,R16,2,3714218,2022-03-15,985,Manchester United,13,Atlético de Madrid,0,1,Old Trafford,73008,COM_TORCIDA,0,1,41,0,D,0
+3714225,2021,R16,2,3714217,2022-03-16,1082,LOSC Lille,631,Chelsea FC,1,2,Decathlon Arena-Stade Pierre-Mauroy,49048,COM_TORCIDA,-2,0,38,0,D,0
+3714227,2021,R16,2,3714219,2022-03-16,506,Juventus FC,1050,Villarreal CF,0,3,Allianz Stadium,30385,COM_TORCIDA,0,1,78,0,D,0
+3773445,2021,QF,1,,2022-04-05,281,Manchester City,13,Atlético de Madrid,1,0,Etihad Stadium,52018,COM_TORCIDA,0,0,70,0,V,
+3773447,2021,QF,1,,2022-04-05,294,SL Benfica,31,Liverpool FC,1,3,Estádio da Luz,59633,COM_TORCIDA,0,1,17,0,D,
+3773444,2021,QF,1,,2022-04-06,631,Chelsea FC,418,Real Madrid,1,3,Stamford Bridge,38689,COM_TORCIDA,0,1,21,0,D,
+3773446,2021,QF,1,,2022-04-06,1050,Villarreal CF,27,Bayern Munich,1,0,La Cerámica,21626,COM_TORCIDA,0,0,8,0,V,
+3773448,2021,QF,2,3773444,2022-04-12,418,Real Madrid,631,Chelsea FC,2,3,Santiago Bernabéu,59839,COM_TORCIDA,2,1,15,0,D,1
+3773450,2021,QF,2,3773446,2022-04-12,27,Bayern Munich,1050,Villarreal CF,1,1,Allianz Arena,70000,COM_TORCIDA,-1,0,52,0,E,0
+3773449,2021,QF,2,3773445,2022-04-13,13,Atlético de Madrid,281,Manchester City,0,0,Riyadh Air Metropolitano,65675,COM_TORCIDA,-1,0,-1,0,E,0
+3773451,2021,QF,2,3773447,2022-04-13,31,Liverpool FC,294,SL Benfica,3,3,Anfield,51373,COM_TORCIDA,2,0,21,0,E,1
+3796966,2021,SF,1,,2022-04-26,281,Manchester City,418,Real Madrid,4,3,Etihad Stadium,52217,COM_TORCIDA,0,0,2,0,V,
+3796967,2021,SF,1,,2022-04-27,31,Liverpool FC,1050,Villarreal CF,2,0,Anfield,51586,COM_TORCIDA,0,0,53,0,V,
+3796969,2021,SF,2,3796967,2022-05-03,1050,Villarreal CF,31,Liverpool FC,2,3,La Cerámica,21872,COM_TORCIDA,-2,0,3,0,D,0
+3796968,2021,SF,2,3796966,2022-05-04,418,Real Madrid,281,Manchester City,3,1,Santiago Bernabéu,61416,COM_TORCIDA,-1,1,73,0,V,1
+3812391,2021,F,0,,2022-05-28,31,Liverpool FC,418,Real Madrid,0,1,Stade de France,75000,NEUTRO,0,1,59,0,D,0
+3956695,2022,R16,1,,2023-02-14,5,AC Milan,148,Tottenham Hotspur,1,0,Giuseppe Meazza,74320,COM_TORCIDA,0,0,7,0,V,
+3956699,2022,R16,1,,2023-02-14,583,Paris Saint-Germain,27,Bayern Munich,0,1,Parc des Princes,46435,COM_TORCIDA,0,1,53,0,D,
+3956693,2022,R16,1,,2023-02-15,2282,Club Brugge KV,294,SL Benfica,0,2,Jan Breydelstadion,25643,COM_TORCIDA,0,1,51,0,D,
+3956697,2022,R16,1,,2023-02-15,16,Borussia Dortmund,631,Chelsea FC,1,0,SIGNAL IDUNA PARK,81365,COM_TORCIDA,0,0,63,0,V,
+3956694,2022,R16,1,,2023-02-21,31,Liverpool FC,418,Real Madrid,2,5,Anfield,52337,COM_TORCIDA,0,0,4,0,D,
+3956696,2022,R16,1,,2023-02-21,24,Eintracht Frankfurt,6195,SSC Napoli,0,2,Commerzbank Arena,47500,COM_TORCIDA,0,1,40,1,D,
+3956692,2022,R16,1,,2023-02-22,23826,RB Leipzig,281,Manchester City,1,1,Red Bull Arena,45228,COM_TORCIDA,0,1,27,0,E,
+3956698,2022,R16,1,,2023-02-22,46,Inter Milan,720,FC Porto,1,0,Giuseppe Meazza,75374,COM_TORCIDA,0,0,86,0,V,
+3956685,2022,R16,2,3956693,2023-03-07,294,SL Benfica,2282,Club Brugge KV,5,1,Estádio da Luz,61018,COM_TORCIDA,2,0,38,0,V,1
+3956689,2022,R16,2,3956697,2023-03-07,631,Chelsea FC,16,Borussia Dortmund,2,0,Stamford Bridge,39392,COM_TORCIDA,-1,0,43,0,V,1
+3956687,2022,R16,2,3956695,2023-03-08,148,Tottenham Hotspur,5,AC Milan,0,0,Tottenham Hotspur Stadium,61602,COM_TORCIDA,-1,0,-1,0,E,0
+3956691,2022,R16,2,3956699,2023-03-08,27,Bayern Munich,583,Paris Saint-Germain,2,0,Allianz Arena,75000,COM_TORCIDA,1,0,61,0,V,1
+3956684,2022,R16,2,3956692,2023-03-14,281,Manchester City,23826,RB Leipzig,7,0,Etihad Stadium,52038,COM_TORCIDA,0,0,22,0,V,1
+3956690,2022,R16,2,3956698,2023-03-14,720,FC Porto,46,Inter Milan,0,0,Estádio do Dragão,48015,COM_TORCIDA,-1,0,-1,0,E,0
+3956686,2022,R16,2,3956694,2023-03-15,418,Real Madrid,31,Liverpool FC,1,0,Santiago Bernabéu,63127,COM_TORCIDA,3,0,78,0,V,1
+3956688,2022,R16,2,3956696,2023-03-15,6195,SSC Napoli,24,Eintracht Frankfurt,3,0,Diego Armando Maradona,49082,COM_TORCIDA,2,0,45,0,V,1
+4041601,2022,QF,1,,2023-04-11,294,SL Benfica,46,Inter Milan,0,2,Estádio da Luz,62594,COM_TORCIDA,0,1,51,0,D,
+4041602,2022,QF,1,,2023-04-11,281,Manchester City,27,Bayern Munich,3,0,Etihad Stadium,52257,COM_TORCIDA,0,0,27,0,V,
+4041600,2022,QF,1,,2023-04-12,418,Real Madrid,631,Chelsea FC,2,0,Santiago Bernabéu,63142,COM_TORCIDA,0,0,21,0,V,
+4041603,2022,QF,1,,2023-04-12,5,AC Milan,6195,SSC Napoli,1,0,Giuseppe Meazza,74742,COM_TORCIDA,0,0,40,0,V,
+4041606,2022,QF,2,4041603,2023-04-18,6195,SSC Napoli,5,AC Milan,1,1,Diego Armando Maradona,52728,COM_TORCIDA,-1,1,43,0,E,0
+4041607,2022,QF,2,4041600,2023-04-18,631,Chelsea FC,418,Real Madrid,0,2,Stamford Bridge,39453,COM_TORCIDA,-2,1,58,0,D,0
+4041604,2022,QF,2,4041601,2023-04-19,46,Inter Milan,294,SL Benfica,3,3,Giuseppe Meazza,75380,COM_TORCIDA,2,0,14,0,E,1
+4041605,2022,QF,2,4041602,2023-04-19,27,Bayern Munich,281,Manchester City,1,1,Allianz Arena,75024,COM_TORCIDA,-3,1,57,0,E,0
+4060794,2022,SF,1,,2023-05-09,418,Real Madrid,281,Manchester City,1,1,Santiago Bernabéu,63485,COM_TORCIDA,0,0,36,0,E,
+4060795,2022,SF,1,,2023-05-10,5,AC Milan,46,Inter Milan,0,2,Giuseppe Meazza,75532,COM_TORCIDA,0,1,8,0,D,
+4060796,2022,SF,2,4060795,2023-05-16,46,Inter Milan,5,AC Milan,1,0,Giuseppe Meazza,75567,COM_TORCIDA,2,0,74,0,V,1
+4060797,2022,SF,2,4060794,2023-05-17,281,Manchester City,418,Real Madrid,4,0,Etihad Stadium,53000,COM_TORCIDA,0,0,23,0,V,1
+4077814,2022,F,0,,2023-06-10,281,Manchester City,46,Inter Milan,1,0,Atatürk Olimpiyat,72000,NEUTRO,0,0,68,0,V,1
