@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief Ponto de entrada do programa principal — Etapas 2, 3 e 4 (Módulo A completo: Grafo/DAG).
+ * @brief Ponto de entrada do programa principal — Etapas 2, 3, 4 (Módulo A) e Etapa 5 (Módulo B: Árvore CART).
  *
  * Nota metodológica: A amostra é observacional e de tamanho reduzido (139 jogos, sendo 123 no DAG).
  * Todos os resultados descrevem associações empíricas ("está associado a"), e não causalidade.
@@ -310,6 +310,8 @@ int main() {
         std::cout << "    - data/eventos_ko.csv   : " << eventos.size() << " eventos\n";
         std::cout << "    - data/transicoes.csv   : " << transicoes.size() << " transicoes\n\n";
 
+        std::filesystem::create_directories("results");
+
         // 2. Construção dos Grafos por Contexto (COM_TORCIDA e SEM_TORCIDA)
         Grafo g_com = construir_grafo(transicoes, "COM_TORCIDA");
         Grafo g_sem = construir_grafo(transicoes, "SEM_TORCIDA");
@@ -337,7 +339,6 @@ int main() {
 
         imprimir_tabela_resiliencia_volta(g_com, dp_com, g_sem, dp_sem);
 
-        std::filesystem::create_directories("results");
         salvar_csv_resiliencia("results/dp_resiliencia.csv", dp_com, dp_sem);
         salvar_csv_comparacao_volta("results/dp_comparacao_volta.csv", g_com, dp_com, g_sem, dp_sem);
 
@@ -353,12 +354,19 @@ int main() {
         imprimir_metricas_colapso(tab_colapso);
         salvar_csv_metricas_colapso("results/metricas_colapso.csv", tab_colapso);
 
-        std::cout << ">>> Arquivos CSV das Etapas 3 e 4 salvos em results/:\n";
+        // 6. Etapa 5: Módulo B — Árvore de Decisão CART (k-fold CV, Baselines, Importâncias e Exportação DOT)
+        executar_modulo_arvore(jogos);
+
+        std::cout << ">>> Arquivos gerados em results/:\n";
         std::cout << "    - results/dp_resiliencia.csv\n";
         std::cout << "    - results/dp_comparacao_volta.csv\n";
         std::cout << "    - results/caminhos_virada.csv\n";
         std::cout << "    - results/alcancabilidade_virada.csv\n";
-        std::cout << "    - results/metricas_colapso.csv\n\n";
+        std::cout << "    - results/metricas_colapso.csv\n";
+        std::cout << "    - results/arvore_cv_comparacao.csv\n";
+        std::cout << "    - results/arvore_importancia_atributos.csv\n";
+        std::cout << "    - results/arvore_resultado.dot (.txt)\n";
+        std::cout << "    - results/arvore_classificou.dot (.txt)\n\n";
 
     } catch (const std::exception& e) {
         std::cerr << "[EXCECAO] " << e.what() << "\n";

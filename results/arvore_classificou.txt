@@ -1,0 +1,21 @@
+[NO id=0, prof=0, n=75 (35/40), imp=0.498]
+  |-- Se (agg_antes_mandante <= 0.50):
+  |   [NO id=1, prof=1, n=47 (32/15), imp=0.435]
+  |     |-- Se (sofreu_primeiro <= 0.50):
+  |     |   [NO id=2, prof=2, n=25 (12/13), imp=0.499]
+  |     |     |-- Se (fase == QF):
+  |     |     |   --> [FOLHA id=3] Predicao: ELIMINADO | P(CLASSIFICADO)=12.5% (n=8: 7 ELIMINADO, 1 CLASSIFICADO | imp=0.219)
+  |     |     +-- Se (fase != QF):
+  |     |         --> [FOLHA id=4] Predicao: CLASSIFICADO | P(CLASSIFICADO)=70.6% (n=17: 5 ELIMINADO, 12 CLASSIFICADO | imp=0.415)
+  |     +-- Se (sofreu_primeiro >  0.50):
+  |         [NO id=5, prof=2, n=22 (20/2), imp=0.165]
+  |           |-- Se (dif_valor_mi <= -186.00):
+  |           |   --> [FOLHA id=6] Predicao: ELIMINADO | P(CLASSIFICADO)=33.3% (n=6: 4 ELIMINADO, 2 CLASSIFICADO | imp=0.444)
+  |           +-- Se (dif_valor_mi >  -186.00):
+  |               --> [FOLHA id=7] Predicao: ELIMINADO | P(CLASSIFICADO)=0.0% (n=16: 16 ELIMINADO, 0 CLASSIFICADO | imp=0.000)
+  +-- Se (agg_antes_mandante >  0.50):
+      [NO id=8, prof=1, n=28 (3/25), imp=0.191]
+        |-- Se (min_primeiro_gol <= 10.50):
+        |   --> [FOLHA id=9] Predicao: CLASSIFICADO | P(CLASSIFICADO)=50.0% (n=6: 3 ELIMINADO, 3 CLASSIFICADO | imp=0.500)
+        +-- Se (min_primeiro_gol >  10.50):
+            --> [FOLHA id=10] Predicao: CLASSIFICADO | P(CLASSIFICADO)=100.0% (n=22: 0 ELIMINADO, 22 CLASSIFICADO | imp=0.000)

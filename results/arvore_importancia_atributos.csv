@@ -1,0 +1,10 @@
+atributo,grupo,eh_categorico,importancia_resultado,importancia_classificou
+perna,PRESSAO,0,0.000000,0.000000
+agg_antes_mandante,PRESSAO,0,0.146176,0.505326
+sofreu_primeiro,PRESSAO,0,0.586268,0.188520
+min_primeiro_gol,PRESSAO,0,0.168374,0.103122
+vermelhos_mandante,PRESSAO,0,0.000000,0.000000
+dif_valor_mi,CONTROLE,0,0.099182,0.042423
+mandante_favorito,CONTROLE,0,0.000000,0.000000
+fase,PRESSAO,1,0.000000,0.160609
+contexto,PRESSAO,1,0.000000,0.000000

@@ -7,6 +7,7 @@
 #define MAIN_HPP
 
 #include "alcancabilidade.hpp"
+#include "arvore.hpp"
 #include "caminho.hpp"
 #include "csv.hpp"
 #include "dp.hpp"

@@ -1,0 +1,29 @@
+digraph ArvoreCART {
+    rankdir=TB;
+    labelloc="t";
+    label="Arvore CART - Classificacao do Mandante (75 jogos, Gini, max_depth=3)";
+    fontsize=14;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+    n0 [shape=box, style="filled", fillcolor="#e2e8f0", label="agg_antes_mandante <= 0.50\nimp = 0.498 | n = 75 [35 / 40]"];
+    n1 [shape=box, style="filled", fillcolor="#e2e8f0", label="sofreu_primeiro <= 0.50\nimp = 0.435 | n = 47 [32 / 15]"];
+    n2 [shape=box, style="filled", fillcolor="#e2e8f0", label="fase == QF\nimp = 0.499 | n = 25 [12 / 13]"];
+    n3 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: ELIMINADO\nP(CLASSIFICADO) = 12.5%\nn = 8 [7 / 1]\nimp = 0.219"];
+    n2 -> n3 [label="Sim"];
+    n4 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: CLASSIFICADO\nP(CLASSIFICADO) = 70.6%\nn = 17 [5 / 12]\nimp = 0.415"];
+    n2 -> n4 [label="Nao"];
+    n1 -> n2 [label="Sim"];
+    n5 [shape=box, style="filled", fillcolor="#e2e8f0", label="dif_valor_mi <= -186.00\nimp = 0.165 | n = 22 [20 / 2]"];
+    n6 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: ELIMINADO\nP(CLASSIFICADO) = 33.3%\nn = 6 [4 / 2]\nimp = 0.444"];
+    n5 -> n6 [label="Sim"];
+    n7 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: ELIMINADO\nP(CLASSIFICADO) = 0.0%\nn = 16 [16 / 0]\nimp = 0.000"];
+    n5 -> n7 [label="Nao"];
+    n1 -> n5 [label="Nao"];
+    n0 -> n1 [label="Sim"];
+    n8 [shape=box, style="filled", fillcolor="#e2e8f0", label="min_primeiro_gol <= 10.50\nimp = 0.191 | n = 28 [3 / 25]"];
+    n9 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: CLASSIFICADO\nP(CLASSIFICADO) = 50.0%\nn = 6 [3 / 3]\nimp = 0.500"];
+    n8 -> n9 [label="Sim"];
+    n10 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: CLASSIFICADO\nP(CLASSIFICADO) = 100.0%\nn = 22 [0 / 22]\nimp = 0.000"];
+    n8 -> n10 [label="Nao"];
+    n0 -> n8 [label="Nao"];
+}

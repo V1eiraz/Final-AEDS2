@@ -1,0 +1,21 @@
+[NO id=0, prof=0, n=139 (80/59), imp=0.489]
+  |-- Se (sofreu_primeiro <= 0.50):
+  |   [NO id=1, prof=1, n=83 (28/55), imp=0.447]
+  |     |-- Se (min_primeiro_gol <= 105.50):
+  |     |   [NO id=2, prof=2, n=76 (21/55), imp=0.400]
+  |     |     |-- Se (dif_valor_mi <= -78.00):
+  |     |     |   --> [FOLHA id=3] Predicao: VENCEU | P(VENCEU)=50.0% (n=26: 13 NAO_VENCEU, 13 VENCEU | imp=0.500)
+  |     |     +-- Se (dif_valor_mi >  -78.00):
+  |     |         --> [FOLHA id=4] Predicao: VENCEU | P(VENCEU)=84.0% (n=50: 8 NAO_VENCEU, 42 VENCEU | imp=0.269)
+  |     +-- Se (min_primeiro_gol >  105.50):
+  |         --> [FOLHA id=5] Predicao: NAO_VENCEU | P(VENCEU)=0.0% (n=7: 7 NAO_VENCEU, 0 VENCEU | imp=0.000)
+  +-- Se (sofreu_primeiro >  0.50):
+      [NO id=6, prof=1, n=56 (52/4), imp=0.133]
+        |-- Se (agg_antes_mandante <= -0.50):
+        |   [NO id=7, prof=2, n=10 (6/4), imp=0.480]
+        |     |-- Se (agg_antes_mandante <= -1.50):
+        |     |   --> [FOLHA id=8] Predicao: NAO_VENCEU | P(VENCEU)=0.0% (n=5: 5 NAO_VENCEU, 0 VENCEU | imp=0.000)
+        |     +-- Se (agg_antes_mandante >  -1.50):
+        |         --> [FOLHA id=9] Predicao: VENCEU | P(VENCEU)=80.0% (n=5: 1 NAO_VENCEU, 4 VENCEU | imp=0.320)
+        +-- Se (agg_antes_mandante >  -0.50):
+            --> [FOLHA id=10] Predicao: NAO_VENCEU | P(VENCEU)=0.0% (n=46: 46 NAO_VENCEU, 0 VENCEU | imp=0.000)

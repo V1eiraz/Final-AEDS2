@@ -1,0 +1,29 @@
+digraph ArvoreCART {
+    rankdir=TB;
+    labelloc="t";
+    label="Arvore CART - Resultado do Mandante (139 jogos, Gini, max_depth=3)";
+    fontsize=14;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+    n0 [shape=box, style="filled", fillcolor="#e2e8f0", label="sofreu_primeiro <= 0.50\nimp = 0.489 | n = 139 [80 / 59]"];
+    n1 [shape=box, style="filled", fillcolor="#e2e8f0", label="min_primeiro_gol <= 105.50\nimp = 0.447 | n = 83 [28 / 55]"];
+    n2 [shape=box, style="filled", fillcolor="#e2e8f0", label="dif_valor_mi <= -78.00\nimp = 0.400 | n = 76 [21 / 55]"];
+    n3 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: VENCEU\nP(VENCEU) = 50.0%\nn = 26 [13 / 13]\nimp = 0.500"];
+    n2 -> n3 [label="Sim"];
+    n4 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: VENCEU\nP(VENCEU) = 84.0%\nn = 50 [8 / 42]\nimp = 0.269"];
+    n2 -> n4 [label="Nao"];
+    n1 -> n2 [label="Sim"];
+    n5 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: NAO_VENCEU\nP(VENCEU) = 0.0%\nn = 7 [7 / 0]\nimp = 0.000"];
+    n1 -> n5 [label="Nao"];
+    n0 -> n1 [label="Sim"];
+    n6 [shape=box, style="filled", fillcolor="#e2e8f0", label="agg_antes_mandante <= -0.50\nimp = 0.133 | n = 56 [52 / 4]"];
+    n7 [shape=box, style="filled", fillcolor="#e2e8f0", label="agg_antes_mandante <= -1.50\nimp = 0.480 | n = 10 [6 / 4]"];
+    n8 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: NAO_VENCEU\nP(VENCEU) = 0.0%\nn = 5 [5 / 0]\nimp = 0.000"];
+    n7 -> n8 [label="Sim"];
+    n9 [shape=box, style="filled,rounded", fillcolor="#d4edda", label="Folha: VENCEU\nP(VENCEU) = 80.0%\nn = 5 [1 / 4]\nimp = 0.320"];
+    n7 -> n9 [label="Nao"];
+    n6 -> n7 [label="Sim"];
+    n10 [shape=box, style="filled,rounded", fillcolor="#f8d7da", label="Folha: NAO_VENCEU\nP(VENCEU) = 0.0%\nn = 46 [46 / 0]\nimp = 0.000"];
+    n6 -> n10 [label="Nao"];
+    n0 -> n6 [label="Nao"];
+}
