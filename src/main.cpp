@@ -1,24 +1,26 @@
 /**
  * @file main.cpp
- * @brief Ponto de entrada do programa principal — Etapa 2: Leitura CSV, Grafo (DAG) e Kahn.
+ * @brief Ponto de entrada do programa principal — Etapas 2 e 3: Leitura CSV, Grafo (DAG), Kahn e DP.
  *
- * Nota metodológica: A amostra é observacional e de tamanho reduzido (139 jogos).
+ * Nota metodológica: A amostra é observacional e de tamanho reduzido (139 jogos, sendo 123 no DAG).
  * Todos os resultados descrevem associações empíricas ("está associado a"), e não causalidade.
  */
 
 #include "main.hpp"
 
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
 /**
- * @brief Imprime o resumo estrutural do grafo e sua ordenação topológica de Kahn.
+ * @brief Imprime o resumo estrutural do grafo e retorna sua ordenação topológica de Kahn.
  */
-static bool inspecionar_grafo_e_toposort(const std::string& titulo,
-                                         const Grafo& g,
-                                         bool imprimir_todos_vertices) {
+static ResultadoToposort inspecionar_grafo_e_toposort(const std::string& titulo,
+                                                      const Grafo& g,
+                                                      bool imprimir_todos_vertices) {
     ResultadoToposort topo = ordenacao_topologica_kahn(g);
 
     std::cout << "====================================================================\n";
@@ -35,7 +37,7 @@ static bool inspecionar_grafo_e_toposort(const std::string& titulo,
         std::cerr << "[ERRO CRITICO] Ciclo detectado no grafo '" << titulo
                   << "'! Visitados apenas " << topo.ordem.size() << " de "
                   << g.num_vertices() << " vertices.\n";
-        return false;
+        return topo;
     }
 
     if (imprimir_todos_vertices) {
@@ -51,7 +53,101 @@ static bool inspecionar_grafo_e_toposort(const std::string& titulo,
         }
     }
     std::cout << "\n";
-    return true;
+    return topo;
+}
+
+/**
+ * @brief Imprime a tabela comparativa do Índice de Resiliência (Perna 2 - Volta) com n por estado.
+ */
+static void imprimir_tabela_resiliencia_volta(const Grafo& g_com,
+                                              const ResultadoDP& dp_com,
+                                              const Grafo& g_sem,
+                                              const ResultadoDP& dp_sem) {
+    std::cout << "================================================================================\n";
+    std::cout << "ETAPA 3: INDICE DE RESILIENCIA P(CLASSIFICADO | estado) - PERNA 2 (VOLTA)\n";
+    std::cout << "--------------------------------------------------------------------------------\n";
+    std::cout << "  Tempo DP COM_TORCIDA : " << std::fixed << std::setprecision(4) << dp_com.tempo_ms << " ms\n";
+    std::cout << "  Tempo DP SEM_TORCIDA : " << std::fixed << std::setprecision(4) << dp_sem.tempo_ms << " ms\n";
+    std::cout << "--------------------------------------------------------------------------------\n";
+    std::cout << std::left
+              << std::setw(12) << "Estado"
+              << std::setw(8)  << "Janela"
+              << std::setw(8)  << "Saldo"
+              << std::right
+              << std::setw(14) << "P(Com Torc.)"
+              << std::setw(8)  << "n(Com)"
+              << std::setw(14) << "P(Sem Torc.)"
+              << std::setw(8)  << "n(Sem)"
+              << std::setw(12) << "Dif(C - S)"
+              << "\n";
+    std::cout << "--------------------------------------------------------------------------------\n";
+
+    for (int t = 0; t <= 7; ++t) {
+        for (int s = -3; s <= 3; ++s) {
+            std::string nome = "P2|S" + std::to_string(s) + "|T" + std::to_string(t);
+            int id_com = g_com.obter_id(nome);
+            int id_sem = g_sem.obter_id(nome);
+
+            if (id_com == -1 && id_sem == -1) {
+                continue;
+            }
+
+            std::cout << std::left
+                      << std::setw(12) << nome
+                      << std::setw(8)  << ("T" + std::to_string(t))
+                      << std::setw(8)  << (s > 0 ? "+" + std::to_string(s) : std::to_string(s))
+                      << std::right;
+
+            if (id_com != -1) {
+                std::ostringstream oss;
+                oss << std::fixed << std::setprecision(1) << (dp_com.prob_por_id[id_com] * 100.0) << "%";
+                std::cout << std::setw(14) << oss.str()
+                          << std::setw(8)  << g_com.observacoes_estado(id_com);
+            } else {
+                std::cout << std::setw(14) << "---"
+                          << std::setw(8)  << 0;
+            }
+
+            if (id_sem != -1) {
+                std::ostringstream oss;
+                oss << std::fixed << std::setprecision(1) << (dp_sem.prob_por_id[id_sem] * 100.0) << "%";
+                std::cout << std::setw(14) << oss.str()
+                          << std::setw(8)  << g_sem.observacoes_estado(id_sem);
+            } else {
+                std::cout << std::setw(14) << "---"
+                          << std::setw(8)  << 0;
+            }
+
+            if (id_com != -1 && id_sem != -1) {
+                double diff_pct = (dp_com.prob_por_id[id_com] - dp_sem.prob_por_id[id_sem]) * 100.0;
+                std::ostringstream oss;
+                oss << std::fixed << std::setprecision(1) << (diff_pct >= 0.0 ? "+" : "") << diff_pct << " pp";
+                std::cout << std::setw(12) << oss.str();
+            } else {
+                std::cout << std::setw(12) << "N/A";
+            }
+            std::cout << "\n";
+        }
+        std::cout << "  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n";
+    }
+
+    // Destaque específico para a pergunta-exemplo da seção 5.2.4 do plano:
+    // "Dado que o mandante perde por 1 no agregado na janela T4 da volta (P2|S-1|T4),
+    //  qual a chance de se classificar, com e sem torcida?"
+    int id_ex_com = g_com.obter_id("P2|S-1|T4");
+    int id_ex_sem = g_sem.obter_id("P2|S-1|T4");
+    std::cout << "\n>>> Destaque (Pergunta-Exemplo Secao 5.2.4 - Estado P2|S-1|T4):\n";
+    if (id_ex_com != -1) {
+        std::cout << "    - COM_TORCIDA: P(Classificar | P2|S-1|T4) = "
+                  << std::fixed << std::setprecision(2) << (dp_com.prob_por_id[id_ex_com] * 100.0)
+                  << "% (n = " << g_com.observacoes_estado(id_ex_com) << " jogos)\n";
+    }
+    if (id_ex_sem != -1) {
+        std::cout << "    - SEM_TORCIDA: P(Classificar | P2|S-1|T4) = "
+                  << std::fixed << std::setprecision(2) << (dp_sem.prob_por_id[id_ex_sem] * 100.0)
+                  << "% (n = " << g_sem.observacoes_estado(id_ex_sem) << " jogos)\n";
+    }
+    std::cout << "================================================================================\n\n";
 }
 
 int main() {
@@ -77,14 +173,31 @@ int main() {
         Grafo g_sem_volta = construir_grafo(transicoes, "SEM_TORCIDA", 2);
 
         // 3. Execução da Ordenação Topológica (Kahn) e verificação de DAG
-        if (!inspecionar_grafo_e_toposort("COM_TORCIDA (Ida + Volta)", g_com, true)) return 1;
-        if (!inspecionar_grafo_e_toposort("SEM_TORCIDA (Ida + Volta)", g_sem, true)) return 1;
+        ResultadoToposort topo_com = inspecionar_grafo_e_toposort("COM_TORCIDA (Ida + Volta)", g_com, false);
+        if (topo_com.tem_ciclo) return 1;
 
-        // Resumo dos subgrafos por perna
+        ResultadoToposort topo_sem = inspecionar_grafo_e_toposort("SEM_TORCIDA (Ida + Volta)", g_sem, false);
+        if (topo_sem.tem_ciclo) return 1;
+
         inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 1 (Ida)", g_com_ida, false);
         inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 2 (Volta)", g_com_volta, false);
         inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 1 (Ida)", g_sem_ida, false);
         inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 2 (Volta)", g_sem_volta, false);
+
+        // 4. Etapa 3: Programação Dinâmica (DP) de Resiliência sobre o DAG
+        ResultadoDP dp_com = calcular_dp_resiliencia(g_com, topo_com);
+        ResultadoDP dp_sem = calcular_dp_resiliencia(g_sem, topo_sem);
+
+        imprimir_tabela_resiliencia_volta(g_com, dp_com, g_sem, dp_sem);
+
+        // Exporta resultados para a pasta results/
+        std::filesystem::create_directories("results");
+        salvar_csv_resiliencia("results/dp_resiliencia.csv", dp_com, dp_sem);
+        salvar_csv_comparacao_volta("results/dp_comparacao_volta.csv", g_com, dp_com, g_sem, dp_sem);
+
+        std::cout << ">>> Arquivos CSV da Etapa 3 gerados com sucesso:\n";
+        std::cout << "    - results/dp_resiliencia.csv\n";
+        std::cout << "    - results/dp_comparacao_volta.csv\n\n";
 
     } catch (const std::exception& e) {
         std::cerr << "[EXCECAO] " << e.what() << "\n";

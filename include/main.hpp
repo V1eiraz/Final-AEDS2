@@ -7,6 +7,7 @@
 #define MAIN_HPP
 
 #include "csv.hpp"
+#include "dp.hpp"
 #include "grafo.hpp"
 #include "toposort.hpp"
 
