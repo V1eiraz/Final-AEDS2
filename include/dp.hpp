@@ -67,7 +67,9 @@ bool extrair_componentes_estado(const std::string& nome, int& perna, int& saldo,
  * @param topo Resultado da ordenação topológica de Kahn sobre g.
  * @return ResultadoDP com o vetor de probabilidades, tabela ordenada e tempo gasto.
  */
-ResultadoDP calcular_dp_resiliencia(const Grafo& g, const ResultadoToposort& topo);
+ResultadoDP calcular_dp_resiliencia(const Grafo& g,
+                                    const ResultadoToposort& topo,
+                                    bool montar_tabela = true);
 
 /**
  * @brief Salva a tabela completa de resiliência (COM_TORCIDA e SEM_TORCIDA) em arquivo CSV.

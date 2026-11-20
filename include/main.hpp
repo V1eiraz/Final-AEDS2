@@ -1,6 +1,6 @@
 /**
  * @file main.hpp
- * @brief Cabeçalho principal do sistema de análise (Grafos de Estados e Árvores de Decisão).
+ * @brief Cabeçalho principal do sistema de análise (Grafos de Estados, Árvores CART e Escalabilidade).
  */
 
 #ifndef MAIN_HPP
@@ -13,6 +13,7 @@
 #include "dp.hpp"
 #include "grafo.hpp"
 #include "metricas.hpp"
+#include "sintetico.hpp"
 #include "toposort.hpp"
 
 #endif // MAIN_HPP

@@ -1,8 +1,14 @@
 /**
  * @file main.cpp
- * @brief Ponto de entrada do programa principal — Etapas 2, 3, 4 (Módulo A) e Etapa 5 (Módulo B: Árvore CART).
+ * @brief Ponto de entrada do programa principal — Módulos A (Grafo/DAG), B (Árvore CART) e Escalabilidade.
  *
- * Nota metodológica: A amostra é observacional e de tamanho reduzido (139 jogos, sendo 123 no DAG).
+ * Aceita argumentos opcionais de linha de comando:
+ *   ./build/app          -> Executa tudo (grafo + arvore + escala)
+ *   ./build/app grafo    -> Executa apenas o Módulo A (Grafo/DAG e Métricas de Colapso)
+ *   ./build/app arvore   -> Executa apenas o Módulo B (Árvore CART, 5-fold CV e Exportação DOT)
+ *   ./build/app escala   -> Executa apenas os Testes de Escalabilidade Sintética
+ *
+ * Nota metodológica: A amostra real é observacional e de tamanho reduzido (139 jogos, sendo 123 no DAG).
  * Todos os resultados descrevem associações empíricas ("está associado a"), e não causalidade.
  */
 
@@ -298,75 +304,87 @@ static void imprimir_metricas_colapso(const std::vector<MetricaColapsoGrupo>& me
     std::cout << "================================================================================\n\n";
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     try {
-        // 1. Leitura dos arquivos CSV
-        const std::vector<JogoRow> jogos = ler_jogos_csv("data/jogos_ko.csv");
-        const std::vector<EventoRow> eventos = ler_eventos_csv("data/eventos_ko.csv");
-        const std::vector<TransicaoRow> transicoes = ler_transicoes_csv("data/transicoes.csv");
+        std::string modo = "tudo";
+        if (argc >= 2) {
+            modo = argv[1];
+        }
 
-        std::cout << ">>> Leitura de CSVs concluida com sucesso:\n";
-        std::cout << "    - data/jogos_ko.csv     : " << jogos.size() << " jogos\n";
-        std::cout << "    - data/eventos_ko.csv   : " << eventos.size() << " eventos\n";
-        std::cout << "    - data/transicoes.csv   : " << transicoes.size() << " transicoes\n\n";
+        if (modo != "tudo" && modo != "grafo" && modo != "arvore" && modo != "escala") {
+            std::cerr << "Uso: " << argv[0] << " [tudo | grafo | arvore | escala]\n";
+            return 1;
+        }
+
+        bool rodar_grafo  = (modo == "tudo" || modo == "grafo");
+        bool rodar_arvore = (modo == "tudo" || modo == "arvore");
+        bool rodar_escala = (modo == "tudo" || modo == "escala");
 
         std::filesystem::create_directories("results");
 
-        // 2. Construção dos Grafos por Contexto (COM_TORCIDA e SEM_TORCIDA)
-        Grafo g_com = construir_grafo(transicoes, "COM_TORCIDA");
-        Grafo g_sem = construir_grafo(transicoes, "SEM_TORCIDA");
+        std::vector<JogoRow> jogos;
+        std::vector<EventoRow> eventos;
+        std::vector<TransicaoRow> transicoes;
 
-        Grafo g_com_ida   = construir_grafo(transicoes, "COM_TORCIDA", 1);
-        Grafo g_com_volta = construir_grafo(transicoes, "COM_TORCIDA", 2);
-        Grafo g_sem_ida   = construir_grafo(transicoes, "SEM_TORCIDA", 1);
-        Grafo g_sem_volta = construir_grafo(transicoes, "SEM_TORCIDA", 2);
+        if (rodar_grafo || rodar_arvore) {
+            jogos = ler_jogos_csv("data/jogos_ko.csv");
+            eventos = ler_eventos_csv("data/eventos_ko.csv");
+            transicoes = ler_transicoes_csv("data/transicoes.csv");
 
-        // 3. Execução da Ordenação Topológica (Kahn) e verificação de DAG
-        ResultadoToposort topo_com = inspecionar_grafo_e_toposort("COM_TORCIDA (Ida + Volta)", g_com, false);
-        if (topo_com.tem_ciclo) return 1;
+            std::cout << ">>> Leitura de CSVs concluida com sucesso:\n";
+            std::cout << "    - data/jogos_ko.csv     : " << jogos.size() << " jogos\n";
+            std::cout << "    - data/eventos_ko.csv   : " << eventos.size() << " eventos\n";
+            std::cout << "    - data/transicoes.csv   : " << transicoes.size() << " transicoes\n\n";
+        }
 
-        ResultadoToposort topo_sem = inspecionar_grafo_e_toposort("SEM_TORCIDA (Ida + Volta)", g_sem, false);
-        if (topo_sem.tem_ciclo) return 1;
+        if (rodar_grafo) {
+            Grafo g_com = construir_grafo(transicoes, "COM_TORCIDA");
+            Grafo g_sem = construir_grafo(transicoes, "SEM_TORCIDA");
 
-        inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 1 (Ida)", g_com_ida, false);
-        inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 2 (Volta)", g_com_volta, false);
-        inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 1 (Ida)", g_sem_ida, false);
-        inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 2 (Volta)", g_sem_volta, false);
+            Grafo g_com_ida   = construir_grafo(transicoes, "COM_TORCIDA", 1);
+            Grafo g_com_volta = construir_grafo(transicoes, "COM_TORCIDA", 2);
+            Grafo g_sem_ida   = construir_grafo(transicoes, "SEM_TORCIDA", 1);
+            Grafo g_sem_volta = construir_grafo(transicoes, "SEM_TORCIDA", 2);
 
-        // 4. Etapa 3: Programação Dinâmica (DP) de Resiliência sobre o DAG
-        ResultadoDP dp_com = calcular_dp_resiliencia(g_com, topo_com);
-        ResultadoDP dp_sem = calcular_dp_resiliencia(g_sem, topo_sem);
+            ResultadoToposort topo_com = inspecionar_grafo_e_toposort("COM_TORCIDA (Ida + Volta)", g_com, false);
+            if (topo_com.tem_ciclo) return 1;
 
-        imprimir_tabela_resiliencia_volta(g_com, dp_com, g_sem, dp_sem);
+            ResultadoToposort topo_sem = inspecionar_grafo_e_toposort("SEM_TORCIDA (Ida + Volta)", g_sem, false);
+            if (topo_sem.tem_ciclo) return 1;
 
-        salvar_csv_resiliencia("results/dp_resiliencia.csv", dp_com, dp_sem);
-        salvar_csv_comparacao_volta("results/dp_comparacao_volta.csv", g_com, dp_com, g_sem, dp_sem);
+            inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 1 (Ida)", g_com_ida, false);
+            inspecionar_grafo_e_toposort("COM_TORCIDA - Perna 2 (Volta)", g_com_volta, false);
+            inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 1 (Ida)", g_sem_ida, false);
+            inspecionar_grafo_e_toposort("SEM_TORCIDA - Perna 2 (Volta)", g_sem_volta, false);
 
-        // 5. Etapa 4: Caminho de Virada (-ln p), Alcançabilidade (BFS/DFS) e Métricas de Colapso
-        imprimir_caminhos_virada(g_com, topo_com, g_sem, topo_sem);
-        salvar_csv_caminhos_virada("results/caminhos_virada.csv", g_com, topo_com, g_sem, topo_sem);
+            ResultadoDP dp_com = calcular_dp_resiliencia(g_com, topo_com);
+            ResultadoDP dp_sem = calcular_dp_resiliencia(g_sem, topo_sem);
 
-        std::vector<ComparacaoViradaEstado> tab_alc = comparar_alcancabilidade_virada(g_com, g_sem);
-        imprimir_alcancabilidade_virada(tab_alc);
-        salvar_csv_alcancabilidade("results/alcancabilidade_virada.csv", tab_alc);
+            imprimir_tabela_resiliencia_volta(g_com, dp_com, g_sem, dp_sem);
+            salvar_csv_resiliencia("results/dp_resiliencia.csv", dp_com, dp_sem);
+            salvar_csv_comparacao_volta("results/dp_comparacao_volta.csv", g_com, dp_com, g_sem, dp_sem);
 
-        std::vector<MetricaColapsoGrupo> tab_colapso = calcular_metricas_colapso(jogos, eventos);
-        imprimir_metricas_colapso(tab_colapso);
-        salvar_csv_metricas_colapso("results/metricas_colapso.csv", tab_colapso);
+            imprimir_caminhos_virada(g_com, topo_com, g_sem, topo_sem);
+            salvar_csv_caminhos_virada("results/caminhos_virada.csv", g_com, topo_com, g_sem, topo_sem);
 
-        // 6. Etapa 5: Módulo B — Árvore de Decisão CART (k-fold CV, Baselines, Importâncias e Exportação DOT)
-        executar_modulo_arvore(jogos);
+            std::vector<ComparacaoViradaEstado> tab_alc = comparar_alcancabilidade_virada(g_com, g_sem);
+            imprimir_alcancabilidade_virada(tab_alc);
+            salvar_csv_alcancabilidade("results/alcancabilidade_virada.csv", tab_alc);
 
-        std::cout << ">>> Arquivos gerados em results/:\n";
-        std::cout << "    - results/dp_resiliencia.csv\n";
-        std::cout << "    - results/dp_comparacao_volta.csv\n";
-        std::cout << "    - results/caminhos_virada.csv\n";
-        std::cout << "    - results/alcancabilidade_virada.csv\n";
-        std::cout << "    - results/metricas_colapso.csv\n";
-        std::cout << "    - results/arvore_cv_comparacao.csv\n";
-        std::cout << "    - results/arvore_importancia_atributos.csv\n";
-        std::cout << "    - results/arvore_resultado.dot (.txt)\n";
-        std::cout << "    - results/arvore_classificou.dot (.txt)\n\n";
+            std::vector<MetricaColapsoGrupo> tab_colapso = calcular_metricas_colapso(jogos, eventos);
+            imprimir_metricas_colapso(tab_colapso);
+            salvar_csv_metricas_colapso("results/metricas_colapso.csv", tab_colapso);
+        }
+
+        if (rodar_arvore) {
+            executar_modulo_arvore(jogos);
+        }
+
+        if (rodar_escala) {
+            executar_experimentos_escalabilidade("results/escalabilidade.csv");
+        }
+
+        std::cout << ">>> Execucao concluida com sucesso (modo: " << modo << ").\n";
 
     } catch (const std::exception& e) {
         std::cerr << "[EXCECAO] " << e.what() << "\n";

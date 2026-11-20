@@ -71,7 +71,32 @@ ResultadoBusca dfs_alcancabilidade(const Grafo& g, int id_origem) {
     res.tempo_ms = 0.0;
 
     if (id_origem >= 0 && id_origem < V) {
-        dfs_recursivo(g, id_origem, res);
+        // Para grafos pequenos, usa a versão recursiva clássica; para grafos muito grandes
+        // (ex.: testes de escalabilidade com V = 10^5), usa pilha explícita (LIFO) para
+        // evitar estouro da pilha de chamadas do sistema operacional (stack overflow).
+        if (V <= 5000) {
+            dfs_recursivo(g, id_origem, res);
+        } else {
+            std::vector<int> pilha;
+            pilha.reserve(V);
+            res.visitado[id_origem] = true;
+            pilha.push_back(id_origem);
+
+            while (!pilha.empty()) {
+                int u = pilha.back();
+                pilha.pop_back();
+                res.ordem_visita.push_back(u);
+
+                const std::vector<Aresta>& viz = g.vizinhos(u);
+                for (int i = static_cast<int>(viz.size()) - 1; i >= 0; --i) {
+                    int v = viz[i].destino;
+                    if (!res.visitado[v]) {
+                        res.visitado[v] = true;
+                        pilha.push_back(v);
+                    }
+                }
+            }
+        }
     }
 
     auto fim = std::chrono::high_resolution_clock::now();

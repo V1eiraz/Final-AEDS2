@@ -41,7 +41,9 @@ bool extrair_componentes_estado(const std::string& nome, int& perna, int& saldo,
     return true;
 }
 
-ResultadoDP calcular_dp_resiliencia(const Grafo& g, const ResultadoToposort& topo) {
+ResultadoDP calcular_dp_resiliencia(const Grafo& g,
+                                    const ResultadoToposort& topo,
+                                    bool montar_tabela) {
     if (topo.tem_ciclo) {
         throw std::runtime_error("Nao e possivel executar DP em grafo com ciclo.");
     }
@@ -82,30 +84,31 @@ ResultadoDP calcular_dp_resiliencia(const Grafo& g, const ResultadoToposort& top
 
     // 3. Monta a tabela estruturada e ordena por (perna, janela, saldo) para leitura clara
     ResultadoDP res;
-    res.prob_por_id = dp;
+    res.prob_por_id = std::move(dp);
     res.tempo_ms = duracao.count();
-    res.tabela.reserve(V);
 
-    for (int u = 0; u < V; ++u) {
-        RegistroEstadoDP reg;
-        reg.id_vertice = u;
-        reg.nome_estado = g.obter_nome(u);
-        extrair_componentes_estado(reg.nome_estado, reg.perna, reg.saldo, reg.janela);
-        reg.n_observacoes = g.observacoes_estado(u);
-        reg.prob_classificar = dp[u];
-        res.tabela.push_back(reg);
+    if (montar_tabela) {
+        res.tabela.reserve(V);
+        for (int u = 0; u < V; ++u) {
+            RegistroEstadoDP reg;
+            reg.id_vertice = u;
+            reg.nome_estado = g.obter_nome(u);
+            extrair_componentes_estado(reg.nome_estado, reg.perna, reg.saldo, reg.janela);
+            reg.n_observacoes = g.observacoes_estado(u);
+            reg.prob_classificar = res.prob_por_id[u];
+            res.tabela.push_back(reg);
+        }
+
+        std::sort(res.tabela.begin(), res.tabela.end(),
+                  [](const RegistroEstadoDP& a, const RegistroEstadoDP& b) {
+                      int pa = (a.perna == 0) ? 99 : a.perna;
+                      int pb = (b.perna == 0) ? 99 : b.perna;
+                      if (pa != pb) return pa < pb;
+                      if (a.janela != b.janela) return a.janela < b.janela;
+                      if (a.saldo != b.saldo) return a.saldo < b.saldo;
+                      return a.nome_estado < b.nome_estado;
+                  });
     }
-
-    std::sort(res.tabela.begin(), res.tabela.end(),
-              [](const RegistroEstadoDP& a, const RegistroEstadoDP& b) {
-                  // Estados regulares (perna 1 e 2) vêm antes dos terminais (perna 0)
-                  int pa = (a.perna == 0) ? 99 : a.perna;
-                  int pb = (b.perna == 0) ? 99 : b.perna;
-                  if (pa != pb) return pa < pb;
-                  if (a.janela != b.janela) return a.janela < b.janela;
-                  if (a.saldo != b.saldo) return a.saldo < b.saldo;
-                  return a.nome_estado < b.nome_estado;
-              });
 
     return res;
 }

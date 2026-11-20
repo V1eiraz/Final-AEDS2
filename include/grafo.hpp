@@ -69,6 +69,21 @@ public:
     void recalcular_probabilidades();
 
     /**
+     * @brief Pré-aloca V vértices para geração rápida de DAGs sintéticos de grande porte.
+     *
+     * Cria os vértices 0 .. V-3 como estados intermediários, V-2 como "CLASSIFICADO"
+     * e V-1 como "ELIMINADO".
+     */
+    void inicializar_vertices_sinteticos(int num_vertices);
+
+    /**
+     * @brief Insere uma aresta (u -> v) diretamente pelos IDs inteiros com contagem dada.
+     *
+     * Deve ser seguido por recalcular_probabilidades() ao término da inserção em lote.
+     */
+    void adicionar_aresta_id(int u, int v, int contagem = 1);
+
+    /**
      * @brief Número total de vértices (V).
      */
     int num_vertices() const;

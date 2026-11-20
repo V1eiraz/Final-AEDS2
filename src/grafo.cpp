@@ -80,6 +80,44 @@ void Grafo::recalcular_probabilidades() {
     }
 }
 
+void Grafo::inicializar_vertices_sinteticos(int V) {
+    nome_para_id_.clear();
+    id_para_nome_.clear();
+    adj_.clear();
+    total_saidas_.assign(V, 0);
+    total_entradas_.assign(V, 0);
+    grau_entrada_.assign(V, 0);
+
+    id_para_nome_.resize(V);
+    adj_.resize(V);
+
+    for (int i = 0; i < V - 2; ++i) {
+        id_para_nome_[i] = "S" + std::to_string(i);
+    }
+    if (V >= 2) {
+        id_para_nome_[V - 2] = "CLASSIFICADO";
+        id_para_nome_[V - 1] = "ELIMINADO";
+        nome_para_id_["CLASSIFICADO"] = V - 2;
+        nome_para_id_["ELIMINADO"] = V - 1;
+        nome_para_id_["S0"] = 0;
+    }
+}
+
+void Grafo::adicionar_aresta_id(int u, int v, int contagem) {
+    for (Aresta& a : adj_[u]) {
+        if (a.destino == v) {
+            a.contagem += contagem;
+            total_saidas_[u] += contagem;
+            total_entradas_[v] += contagem;
+            return;
+        }
+    }
+    adj_[u].push_back(Aresta{v, contagem, 0.0});
+    grau_entrada_[v] += 1;
+    total_saidas_[u] += contagem;
+    total_entradas_[v] += contagem;
+}
+
 int Grafo::num_vertices() const {
     return static_cast<int>(id_para_nome_.size());
 }

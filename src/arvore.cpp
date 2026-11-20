@@ -205,40 +205,40 @@ std::unique_ptr<NoArvore> ArvoreCART::construir_recursivo(const std::vector<Amos
         const InfoAtributo& info = catálogo_atributos_[id_attr];
 
         if (!info.eh_categorico) {
-            // Coleta todos os valores distintos desse atributo numérico no nó atual
-            std::vector<double> valores;
-            valores.reserve(indices.size());
+            // Ordena os pares (valor_atributo, rotulo) em O(N log N) e faz uma única
+            // varredura linear O(N) atualizando contagens acumuladas à esquerda e à direita.
+            std::vector<std::pair<double, int>> pares;
+            pares.reserve(indices.size());
             for (int idx : indices) {
-                valores.push_back(amostras[idx].num_vals[info.indice_vetor]);
+                pares.push_back({amostras[idx].num_vals[info.indice_vetor], amostras[idx].rotulo});
             }
-            std::sort(valores.begin(), valores.end());
-            valores.erase(std::unique(valores.begin(), valores.end()), valores.end());
+            std::sort(pares.begin(), pares.end(),
+                      [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+                          return a.first < b.first;
+                      });
 
-            if (valores.size() <= 1) {
-                continue;
-            }
+            int esq_n0 = 0;
+            int esq_n1 = 0;
+            for (std::size_t i = 0; i + 1 < pares.size(); ++i) {
+                if (pares[i].second == 1) {
+                    esq_n1++;
+                } else {
+                    esq_n0++;
+                }
 
-            // Testa cada ponto médio entre valores consecutivos como limiar candidato
-            for (std::size_t i = 0; i + 1 < valores.size(); ++i) {
-                double limiar = 0.5 * (valores[i] + valores[i + 1]);
-
-                int esq_n0 = 0, esq_n1 = 0;
-                int dir_n0 = 0, dir_n1 = 0;
-                for (int idx : indices) {
-                    double v = amostras[idx].num_vals[info.indice_vetor];
-                    int y = amostras[idx].rotulo;
-                    if (v <= limiar) {
-                        if (y == 1) esq_n1++; else esq_n0++;
-                    } else {
-                        if (y == 1) dir_n1++; else dir_n0++;
-                    }
+                // Só avalia limiar quando o próximo valor é estritamente maior (fronteira entre valores distintos)
+                if (pares[i].first == pares[i + 1].first) {
+                    continue;
                 }
 
                 int n_esq = esq_n0 + esq_n1;
-                int n_dir = dir_n0 + dir_n1;
+                int n_dir = no->n_amostras - n_esq;
                 if (n_esq < config_.min_samples_leaf || n_dir < config_.min_samples_leaf) {
                     continue;
                 }
+
+                int dir_n0 = n0 - esq_n0;
+                int dir_n1 = n1 - esq_n1;
 
                 double imp_esq = calcular_impureza(esq_n0, esq_n1);
                 double imp_dir = calcular_impureza(dir_n0, dir_n1);
@@ -250,7 +250,7 @@ std::unique_ptr<NoArvore> ArvoreCART::construir_recursivo(const std::vector<Amos
                     melhor_ganho = ganho;
                     melhor_id_attr = id_attr;
                     melhor_eh_cat = false;
-                    melhor_limiar = limiar;
+                    melhor_limiar = 0.5 * (pares[i].first + pares[i + 1].first);
                 }
             }
         } else {
