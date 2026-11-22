@@ -1,7 +1,7 @@
 # Trabalho Final AEDS2 — Grafos de Estados (DAG) e Árvore de Decisão CART em C++17
 
 **Tema:** *Situações de Pressão Psicológica e Desempenho de Equipes Mandantes em Mata-Matas da UEFA Champions League (2018/19–2022/23)*  
-**Disciplina:** Estruturas em Árvores e Teoria dos Grafos (AEDS2) — CEFET-MG, Campus V (Divinópolis-MG)  
+**Disciplina:** Estruturas em Árvores e Teoria dos Grafos (AEDS2) — UFCI-MG, Campus V (Divinópolis-MG)  
 **Autores:** Davi Enzo Vieira · Felipe Côrtes do Nascimento  
 **Orientador:** Prof. Michel Pires da Silva  
 **Base de Dados (Zenodo):** https://zenodo.org/records/23772487
